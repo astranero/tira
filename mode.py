@@ -1,24 +1,33 @@
+from statistics import mode
+from unittest import result
+
+
 class Mode:
     
     def __init__(self):
         self.mode_dict = {}
+        self.max_key = None
+        self.max_val = 0
 
     def add(self, x):
         if x not in self.mode_dict:
             self.mode_dict[x] = 1
-        elif x in self.mode_dict:
+        if x in self.mode_dict:
             self.mode_dict[x] += 1
-    
-        for key in self.mode_dict:
-            if self.mode_dict[x] > self.mode_dict[key]:
-                return x
-            elif self.mode_dict[x] == self.mode_dict[key] and key < x:
-                return key
-        return x
-       
+
+        if self.mode_dict[x] > self.max_val:
+                self.max_val = self.mode_dict[x]
+                self.max_key = x
+        elif self.mode_dict[x] == self.max_val:
+            if x < self.max_key:
+                self.max_key = x
+                
+        return self.max_key
+        
+        
 
 if __name__ == "__main__":
     m = Mode()
-    print(m.add(3)) # 1
-    print(m.add(2)) # 1
-    print(m.add(1)) # 2
+    print(m.add(1))
+    print(m.add(2))
+    print(m.add(3))

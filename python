@@ -1,0 +1,16 @@
+def rekursio(T, x):
+    if T == None:
+        return 0
+    if T.avain > x:
+        return 1 + rekursio(T.vasen) + rekursio(T.oikea)
+    elif T.avain <= x:
+        return rekursio(T.vasen) + rekursio(T.oikea)
+
+def rekursio(T, x):
+    if T == None:
+        return 0
+    if T.avain <= T.vasen.avain & T.avain > T.oikea.avain:
+        return rekursio(T.vasen)
+    if T.avain <= T.oikea.avain & T.avain > T.vasen.avain:
+        return rekursio(T.oikea)
+    return T.avain
